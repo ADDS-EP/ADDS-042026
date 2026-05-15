@@ -600,6 +600,23 @@ Authenticated Users
 GG_LAB07_Restrizioni_Desktop
 ```
 
+### Attenzione
+### Nota importante sul Security Filtering
+
+Quando si rimuove `Authenticated Users` dal Security Filtering di una GPO utente, è necessario garantire comunque il permesso `Read` alla GPO per `Authenticated Users` oppure per `Domain Computers`.
+
+Configurazione corretta:
+
+| Soggetto | Read | Apply group policy |
+|---|---:|---:|
+| `GG_LAB07_Restrizioni_Desktop` | Sì | Sì |
+| `Authenticated Users` oppure `Domain Computers` | Sì | No |
+
+Il gruppo usato nel Security Filtering stabilisce chi applica la GPO.  
+Il permesso `Read` consente al client di leggere la GPO durante l’elaborazione.
+
+
+
 ## 14.5 Verifica permessi Delegation
 
 1. Aprire la scheda **Delegation** della GPO.
