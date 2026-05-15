@@ -588,10 +588,12 @@ GPO_LAB07_GUI_SecurityFiltering_User
 ```
 
 3. Nella scheda **Scope**, individuare **Security Filtering**.
-4. Rimuovere:
+
+
+4. Rimuovere:  <-- ATTENZIONE vedi nota qui in basso
 
 ```text
-Authenticated Users
+Authenticated Users 
 ```
 
 5. Aggiungere:
@@ -600,7 +602,7 @@ Authenticated Users
 GG_LAB07_Restrizioni_Desktop
 ```
 
-### Attenzione
+### NOTA: Attenzione
 ### Nota importante sul Security Filtering
 
 Quando si rimuove `Authenticated Users` dal Security Filtering di una GPO utente, è necessario garantire comunque il permesso `Read` alla GPO per `Authenticated Users` oppure per `Domain Computers`.
