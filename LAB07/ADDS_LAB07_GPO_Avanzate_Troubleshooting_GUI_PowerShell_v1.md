@@ -657,9 +657,14 @@ gpupdate /force
 ## 15.2 Verificare l'effetto della policy
 
 1. Aprire il menu Start.
-2. Verificare se il comando **Run/Esegui** risulta non disponibile secondo il comportamento previsto dalla policy.
+2. Verificare se il comando **Run/Esegui** risulta non disponibile secondo il comportamento previsto dalla policy. **vedi nota**
 
 Se l'effetto grafico non è immediatamente evidente, usare il report `gpresult`.
+
+### NOTA
+Attenzione: **La verifica tramite menu Start è poco adatta a Windows 11.**
+
+La policy però esiste ed è ancora supportata su Windows 11. Microsoft la identifica come NoRun, applicabile sia a Computer sia a User Configuration, e indica compatibilità con Windows 11 dalla versione 21H2 in poi. Inoltre, quando è abilitata, rimuove il comando Run dal menu Start, rimuove il comando New Task / Run dal Task Manager e impedisce l’apertura della finestra Esegui con Windows + R.
 
 ## 15.3 Generare report HTML per lab07.alfa
 
