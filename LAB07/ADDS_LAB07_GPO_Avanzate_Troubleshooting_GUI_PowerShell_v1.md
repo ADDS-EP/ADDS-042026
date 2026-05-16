@@ -55,7 +55,6 @@ Durata prevista: **4 ore**
 | PowerShell con esempi aggiuntivi | 50 min | Nuove impostazioni, report, filtri, link e ripristino |
 | Evidenze e debrief | 20 min | Report finale e verifica di non regressione |
 
-La durata è volutamente ampia. Il laboratorio non è una sequenza di clic da completare in fretta: è un esercizio di metodo. L'alternativa è creare policy a caso e poi fissare `gpresult` come fosse un oracolo ostile. Meglio evitare.
 
 ---
 
@@ -216,7 +215,7 @@ Quindi una GPO può essere:
 - apparentemente configurata bene;
 - ma non applicata perché il soggetto non è incluso nel filtro di sicurezza.
 
-Questo è uno dei modi più efficienti con cui gli ambienti Windows ricordano agli amministratori che la realtà non prova alcuna pietà.
+.
 
 ## 8.3 WMI Filtering
 
@@ -229,7 +228,7 @@ Esempi:
 - architettura;
 - caratteristiche hardware.
 
-Nel LAB07 il WMI filtering viene trattato come tecnica di selezione avanzata e come possibile causa di mancata applicazione. Non deve diventare il tema dominante del laboratorio.
+Nel LAB07 il WMI filtering viene trattato come tecnica di selezione avanzata e come possibile causa di mancata applicazione. 
 
 ## 8.4 Loopback Processing
 
@@ -302,11 +301,8 @@ Durante il laboratorio si useranno nomi espliciti.
 | GPO PowerShell | prefisso `GPO_LAB07_PS_` |
 | Utenti test | prefisso `lab07.` |
 
-Regola operativa:
 
-> Non modificare `Default Domain Policy` e `Default Domain Controllers Policy`.
 
-Queste due GPO vanno osservate, non usate come campo di addestramento. Sono già abbastanza stressate dalla storia dell'informatica.
 
 ---
 
@@ -440,7 +436,7 @@ P@ssw0rdLAB07!
 Password never expires
 ```
 
-solo se consentito dalle regole didattiche del corso.
+
 
 7. Deselezionare:
 
@@ -458,7 +454,7 @@ Ripetere gli stessi passaggi per:
 lab07.beta
 ```
 
-Questi due utenti devono avere la stessa password, salvo diversa indicazione del docente.
+Questi due utenti possono avere la stessa password dato il nostro contesto da laboratorio.
 
 ---
 
@@ -781,7 +777,9 @@ Il loopback processing viene configurato nella parte **Computer Configuration** 
 
 Quindi la GPO deve applicarsi al computer.
 
-Se `CLIENT1` non si trova nella OU a cui è collegata la GPO, il loopback non viene applicato. Anche se la configurazione utente dentro la GPO è perfetta. La perfezione scollegata dal perimetro, come sempre, non produce molto oltre a un falso senso di controllo.
+Se `CLIENT1` non si trova nella OU a cui è collegata la GPO, il loopback non viene applicato. 
+
+**Da dotare che:** pur essendo la configurazione utente dentro la GPO è perfetta, risulta scollegata dal perimetro amministrativo; motivo per il quale c'è da prestare molta attenzione.
 
 ---
 
@@ -1069,6 +1067,8 @@ Dopo il riavvio, verificare se la GPO padre risulta bloccata.
 Generare report:
 
 ```cmd
+gpresult /r
+oppure
 gpresult /h C:\Temp\gpresult_lab07_block_inheritance.html
 start C:\Temp\gpresult_lab07_block_inheritance.html
 ```
@@ -1118,6 +1118,8 @@ shutdown /r /t 0
 Generare report:
 
 ```cmd
+gpresult /h
+oppure
 gpresult /h C:\Temp\gpresult_lab07_enforced.html
 start C:\Temp\gpresult_lab07_enforced.html
 ```
@@ -1197,6 +1199,8 @@ gpupdate /force
 7. Generare report:
 
 ```cmd
+gpresult /h
+oppure
 gpresult /h C:\Temp\gpresult_lab07_trouble_security.html
 start C:\Temp\gpresult_lab07_trouble_security.html
 ```
@@ -1391,7 +1395,7 @@ echo %LOGONSERVER%
 
 Se il client usa un DNS esterno o errato, le GPO possono fallire perché il client non trova correttamente il Domain Controller o SYSVOL.
 
-Questo punto anticipa il LAB08 su DNS avanzato: le GPO non vivono nel vuoto, anche se a volte la console fa del suo meglio per farlo sembrare.
+Questo punto anticipa il LAB08 su DNS avanzato.
 
 ---
 
@@ -1651,7 +1655,9 @@ Set-GPPermission -Name $GpoName -TargetName "GG_LAB07_Restrizioni_Desktop" -Targ
 
 ## 33.4 Nota operativa
 
-Questa impostazione può impedire l'apertura del Task Manager agli utenti coinvolti. Nel laboratorio serve a mostrare un effetto chiaro. In ambienti reali va valutata con attenzione, perché una restrizione apparentemente innocua può complicare il supporto tecnico.
+Questa impostazione può impedire l'apertura del Task Manager agli utenti coinvolti.
+**Valutazione di applicabilità di questa policy**
+Nel nostro laboratorio serve a mostrare un effetto chiaro ma in ambienti reali va valutata con attenzione, perché una restrizione apparentemente innocua può complicare il supporto tecnico.
 
 ---
 
